@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class Tube {
+  public static final int TUBE_WIDTH = 52;
   
   private static final int FLUCTUATION = 130;
   private static final int TUBE_GAP = 100;
@@ -38,6 +39,11 @@ public class Tube {
   
   public Vector2 getPosBotTube() {
     return posBotTube;
+  }
+  
+  public void reposition(float x) {
+    posTopTube.set(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENNING_TUBE);
+    posBotTube.set(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
   }
   
 }
