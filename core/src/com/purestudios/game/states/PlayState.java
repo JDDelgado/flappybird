@@ -1,16 +1,16 @@
 package com.purestudios.game.states;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.purestudios.game.FlappyDemo;
+import com.purestudios.game.sprites.Bird;
 
 public class PlayState extends State {
   
-  private Texture bird;
+  private Bird bird;
   
   public PlayState(GameStateManager gsm) {
     super(gsm);
-    bird = new Texture("bird.png");
+    bird = new Bird(50, 300);
     cam.setToOrtho(false, FlappyDemo.WIDTH / 2, FlappyDemo.HEIGHT / 2);
   }
   
@@ -21,7 +21,9 @@ public class PlayState extends State {
   
   @Override
   public void update(float dt) {
-    // TODO Auto-generated method stub
+    handleInput();
+    
+    bird.update(dt);
   }
   
   @Override
@@ -29,13 +31,12 @@ public class PlayState extends State {
     sb.setProjectionMatrix(cam.combined);
     
     sb.begin();
-    sb.draw(bird, 50, 50);
+    sb.draw(bird.getTexture(), bird.getPosition().x, bird.getPosition().y);
     sb.end();
   }
   
   @Override
   public void dispose() {
-    // TODO Auto-generated method stub
     
   }
   
